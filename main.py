@@ -23,7 +23,7 @@ class MainWindow(Frame):
         self.init_ui()
 
     def init_ui(self):
-        self.notebook = ttk.Notebook(self, width=440, height=350)
+        self.notebook = ttk.Notebook(self, width=640, height=480)
 
         self.a_tab = TabA(self.notebook)
         self.b_tab = TabB(self.notebook)
@@ -55,29 +55,29 @@ class leftWindow(Frame):
     def init_ui(self):
         self.was = 0
         self.quantity_packages = 0
-        self.l2 = Label(self, width=30, height=1, text="Protocols", bg="#FF4500")
-        self.ip_ = Radiobutton(self, indicatoron=0, text="IP", variable=var, value=0, command=self.change, width=30, height=1, bg="#00BFFF")
-        self.tcp_ = Radiobutton(self, indicatoron=0, text="TCP", variable=var, value=1, command=self.change, width=30, height=1, bg="#00BFFF")
-        self.udp_ = Radiobutton(self, indicatoron=0, text="UDP", variable=var, value=2, command=self.change, width=30, height=1, bg="#00BFFF")
-        self.ismp_ = Radiobutton(self, indicatoron=0, text="ICMP", variable=var, value=3, command=self.change, width=30, height=1, bg="#00BFFF")
-        self.lsource = Label(self, width=31, height=1, text="Source IP", bg="#FFA500")
-        self.esource = Entry(self, width=37)
+        self.l2 = Label(self, width=36, height=2, text="Protocols", bg="#4E4E4E")
+        self.ip_ = Radiobutton(self, indicatoron=0, text="IP", variable=var, value=0, command=self.change, width=36, height=2, bg="#4E4E4E")
+        self.tcp_ = Radiobutton(self, indicatoron=0, text="TCP", variable=var, value=1, command=self.change, width=36, height=2, bg="#4E4E4E")
+        self.udp_ = Radiobutton(self, indicatoron=0, text="UDP", variable=var, value=2, command=self.change, width=36, height=2, bg="#4E4E4E")
+        self.ismp_ = Radiobutton(self, indicatoron=0, text="ICMP", variable=var, value=3, command=self.change, width=36, height=2, bg="#4E4E4E")
+        self.lsource = Label(self, width=37, height=1, text="Source IP", bg="#4E4E4E")
+        self.esource = Entry(self, width=43)
         self.esource.insert(0, " "*25 + "192.168.100.5")
-        self.lmacsource = Label(self, width=31, height=1, text="Source MAC address", bg="#FFA500")
-        self.macsource = Entry(self, width=37)
-        self.ldest = Label(self, width=31, height=1, text="Destination IP", bg="#FFA500")
-        self.edest = Entry(self, width=37)
+        self.lmacsource = Label(self, width=37, height=1, text="Source MAC address", bg="#4E4E4E")
+        self.macsource = Entry(self, width=43)
+        self.ldest = Label(self, width=37, height=1, text="Destination IP", bg="#4E4E4E")
+        self.edest = Entry(self, width=43)
         self.edest.insert(0, " "*25 + "192.168.100.5")
-        self.lmacdest = Label(self, width=31, height=1, text="Destination MAC address", bg="#FFA500")
-        self.macdest = Entry(self, width=37)
+        self.lmacdest = Label(self, width=37, height=1, text="Destination MAC address", bg="#4E4E4E")
+        self.macdest = Entry(self, width=43)
         self.macdest.insert(0, " "*26 + "ff:ff:ff:ff:ff:ff")
-        self.lne = Label(self, width=31, height=1, text="Network interface", bg="#FFA500")
-        self.combobox = ttk.Combobox(self, values=key, height=4, width=33)
+        self.lne = Label(self, width=37, height=1, text="Network interface", bg="#4E4E4E")
+        self.combobox = ttk.Combobox(self, values=key, height=4, width=40)
         self.combobox.set(key[4])
         self.combobox.bind("<<ComboboxSelected>>", self.ch)
         self.macsource.insert(0, " " * 23 + get_if_hwaddr(self.combobox.get()))
-        self.bcre = Button(self, text="Create", height=1, width=30, command=self.creater, bg="#FFD700")
-        self.bsen = Button(self, text="Send", height=1,width=30, command=self.sender, bg="#32CD32")
+        self.bcre = Button(self, text="Create", height=3, width=36, command=self.creater, bg="#FFFFFF")
+        self.bsen = Button(self, text="Send", height=3,width=36, command=self.sender, bg="#E70A0A")
 
         self.l2.grid(column=0, row=0)
         self.ip_.grid(column=0, row=1)
@@ -108,21 +108,21 @@ class leftWindow(Frame):
             ex.notebook.hide(self.was)
 
         if var.get() == 0:
-            self.l2['text'] = 'IP protocol'
+            self.l2['text'] = 'Protocols'
             self.was = 0
             ex.a_tab.comboprot.set("ip")
         elif var.get() == 1:
-            self.l2['text'] = 'TCP protocol'
+            self.l2['text'] = 'Protocols'
             ex.notebook.add(ex.b_tab, text="TCP")
             self.was = ex.b_tab
             ex.a_tab.comboprot.set("tcp")
         elif var.get() == 2:
-            self.l2['text'] = 'UDP protocol'
+            self.l2['text'] = 'Protocols'
             ex.notebook.add(ex.c_tab, text="UDP")
             self.was = ex.c_tab
             ex.a_tab.comboprot.set("udp")
         elif var.get() == 3:
-            self.l2['text'] = 'ICMP protocol'
+            self.l2['text'] = 'Protocols'
             ex.notebook.add(ex.d_tab, text="ICMP")
             self.was = ex.d_tab
             ex.a_tab.comboprot.set("icmp")
@@ -241,7 +241,7 @@ if __name__ == '__main__':
     f2 = Frame(root)
     f3 = Frame(root)
     lab = Label(f3, width=10, height=1, text="Data")
-    Re = Text(f3, width=15, height=12, font='Arial 14')
+    Re = Text(f3, width=20, height=22, font='Arial 12')
     deqL = Label(f3, width=20, height=1, text="Total number of packages")
     deqcol = Label(f3, width=5, text=0)
     coun = Label(f3, width=15, height=1, text="Count of packages ")
